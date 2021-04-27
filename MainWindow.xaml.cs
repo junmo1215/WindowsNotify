@@ -31,6 +31,22 @@ namespace WindowsNotify
             this.Left = SystemParameters.PrimaryScreenWidth - this.Width;
             this.Top = SystemParameters.PrimaryScreenHeight - this.Height;
 
+            if (App.isLightMode)
+            {
+                panel_title.Style = (Style)Resources["panel_title_light"];
+                label_title.Style = (Style)Resources["label_title_light"];
+                panel_msg.Style = (Style)Resources["panel_msg_light"];
+                label_msg.Style = (Style)Resources["label_msg_light"];
+            }
+            else
+            {
+                panel_title.Style = (Style)Resources["panel_title_dark"];
+                label_title.Style = (Style)Resources["label_title_dark"];
+                panel_msg.Style = (Style)Resources["panel_msg_dark"];
+                label_msg.Style = (Style)Resources["label_msg_dark"];
+            }
+            
+
             this.Loaded += WindowReady;
         }
 

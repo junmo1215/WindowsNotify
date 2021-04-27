@@ -31,15 +31,41 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--深色主题-->
+        <Style x:Key="panel_title_dark" TargetType="DockPanel">
+            <Setter Property="Background" Value="#FF2B3236" />
+        </Style>
+        <Style x:Key="label_title_dark" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style x:Key="panel_msg_dark" TargetType="DockPanel">
+            <Setter Property="Background" Value="#FF1D2224" />
+        </Style>
+        <Style x:Key="label_msg_dark" TargetType="Label">
+            <Setter Property="Foreground" Value="#FFCAD3DB" />
+        </Style>
+        <!--浅色主题-->
+        <Style x:Key="panel_title_light" TargetType="DockPanel">
+            <Setter Property="Background" Value="#FFDFE4E7" />
+        </Style>
+        <Style x:Key="label_title_light" TargetType="Label">
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+        <Style x:Key="panel_msg_light" TargetType="DockPanel">
+            <Setter Property="Background" Value="#FFF8F8F8" />
+        </Style>
+        <Style x:Key="label_msg_light" TargetType="Label">
+            <Setter Property="Foreground" Value="#FF383A42" />
+        </Style>
     </Window.Resources>
     <DockPanel LastChildFill="False">
-        <DockPanel LastChildFill="False" DockPanel.Dock="Top" Width="300" Height="40" Background="#FF2B3236">
-            <Label x:Name="label_title" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White"/>
-            <Button x:Name="button_close" Style="{StaticResource MyButtonStyle}" Content="X"  Width="20" Height="20" DockPanel.Dock="Right" BorderThickness="0" Margin="0,0,10,0" Click="button_close_Click" Background="#FF2B3236" BorderBrush="{x:Null}" >
+        <DockPanel x:Name="panel_title" LastChildFill="False" DockPanel.Dock="Top" Width="300" Height="40">
+            <Label x:Name="label_title" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="button_close" Style="{StaticResource MyButtonStyle}" Content="X"  Width="20" Height="20" DockPanel.Dock="Right" BorderThickness="0" Margin="0,0,10,0" Click="button_close_Click"  >
             </Button>
         </DockPanel>
-        <DockPanel DockPanel.Dock="Top" Width="300" LastChildFill="False" Height="260" Background="#FF1D2224">
-            <Label x:Name="label_msg" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="#FFCAD3DB"/>
+        <DockPanel x:Name="panel_msg" DockPanel.Dock="Top" Width="300" LastChildFill="False" Height="260" >
+            <Label x:Name="label_msg" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         </DockPanel>
     </DockPanel>
 </Window>

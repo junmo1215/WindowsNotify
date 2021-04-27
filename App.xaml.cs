@@ -13,10 +13,14 @@ namespace WindowsNotify
     /// </summary>
     public partial class App : Application
     {
+        // 显示标题
         public static string title = "title";
+        // 显示正文
         public static string msg = "msg";
+        // 弹窗持续时间
         public static int duration = 5;
-
+        // 是否是浅色模式（默认深色模式）
+        public static bool isLightMode = false;
         private void ParseArgs(object sender, StartupEventArgs e)
         {
             for (int index = 0; index < e.Args.Length; index += 2)
@@ -24,6 +28,10 @@ namespace WindowsNotify
                 if (e.Args.Length == index + 1 || e.Args[index + 1].StartsWith("-"))
                 {
                     //args.Add(e.Args[index], string.Empty);
+                    if (e.Args[index] == "-light")
+                    {
+                        isLightMode = true;
+                    }
                     index--;
                 }
 
