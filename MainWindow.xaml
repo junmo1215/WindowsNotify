@@ -64,8 +64,8 @@
             <Button x:Name="button_close" Style="{StaticResource MyButtonStyle}" Content="X"  Width="20" Height="20" DockPanel.Dock="Right" BorderThickness="0" Margin="0,0,10,0" Click="button_close_Click"  >
             </Button>
         </DockPanel>
-        <DockPanel x:Name="panel_msg" DockPanel.Dock="Top" Width="300" LastChildFill="False" Height="260" >
-            <Label x:Name="label_msg" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <DockPanel x:Name="panel_msg" DockPanel.Dock="Top" Width="300" LastChildFill="False" Height="260" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+            <WebBrowser x:Name="msg_browser" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
         </DockPanel>
     </DockPanel>
 </Window>
