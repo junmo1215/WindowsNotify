@@ -28,47 +28,76 @@ namespace WindowsNotify
         {
             { "msg", "msg" }
         };
+        // 调试
+        public const bool isDebugMode = false;
 
         private void ParseArgs(object sender, StartupEventArgs e)
         {
-            for (int index = 0; index < e.Args.Length; index += 2)
+            string[] args = e.Args;
+            // 用于调试命令行传入的参数（参数中不能有空格，实际传的时候可以，这里调试简化了参数解析）
+            //ReadArgs("-title title -template my_template_with_url -query test", out args);
+
+            for (int index = 0; index < args.Length; index += 2)
             {
-                if (e.Args.Length == index + 1 || e.Args[index + 1].StartsWith("-"))
+                if (args.Length == index + 1 || args[index + 1].StartsWith("-"))
                 {
-                    //args.Add(e.Args[index], string.Empty);
-                    if (e.Args[index] == "-light")
+                    //args.Add(args[index], string.Empty);
+                    if (args[index] == "-light")
                     {
                         isLightMode = true;
                     }
                     index--;
                 }
 
-                if (e.Args.Length >= index + 1 && !e.Args[index + 1].StartsWith("-"))
+                if (args.Length >= index + 1 && !args[index + 1].StartsWith("-"))
                 {
-                    switch (e.Args[index])
+                    switch (args[index])
                     {
                         case "-title":
-                            title = e.Args[index + 1];
+                            title = args[index + 1];
                             break;
                         // msg放在other_params里面，方便渲染内容文本
                         //case "-msg":
-                        //    msg = e.Args[index + 1];
+                        //    msg = args[index + 1];
                         //    break;
                         case "-duration":
-                            if (!Int32.TryParse(e.Args[index + 1], out duration))
+                            if (!Int32.TryParse(args[index + 1], out duration))
                             {
                                 duration = 5;
                             }
                             break;
                         case "-template":
-                            template = e.Args[index + 1];
+                            template = args[index + 1];
                             break;
                         default:
-                            other_params.Add(e.Args[index][1..], e.Args[index + 1]);
+                            string key = args[index][1..];
+                            if (other_params.ContainsKey(key))
+                            {
+                                other_params[key] = args[index + 1];
+                            }
+                            else
+                            {
+                                other_params.Add(key, args[index + 1]);
+                            }
                             break;
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// 解析字符串到args中，用于调试
+        /// </summary>
+        /// <param name="cmds"></param>
+        /// <param name="args"></param>
+        private void ReadArgs(string cmds, out string[] args)
+        {
+            if (cmds == string.Empty) {
+                args = new string[]{ };
+                return;
+            }
+            
+            args = cmds.Split(" ");
         }
     }
 }

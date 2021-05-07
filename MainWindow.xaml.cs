@@ -26,6 +26,8 @@ namespace WindowsNotify
         {
             InitializeComponent();
 
+            Debug(App.isDebugMode);
+
             // 设置弹窗位置
             SetLocation();
 
@@ -38,8 +40,56 @@ namespace WindowsNotify
             label_title.Content = App.title;
             //label_msg.Content = App.msg;
             msg_browser.NavigateToString(html_text);
+            msg_browser.Navigating += CancelNavigating;
 
             this.Loaded += WindowReady;
+        }
+
+        /// <summary>
+        /// 取消在当前窗口打开新网址，并使用默认浏览器打开
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelNavigating(object sender, NavigatingCancelEventArgs e)
+        {
+            e.Cancel = true;
+
+            // 点击的url
+            string uri = e.Uri.AbsoluteUri;
+            var sInfo = new System.Diagnostics.ProcessStartInfo(uri)
+            {
+                UseShellExecute = true,
+            };
+            try
+            {
+                System.Diagnostics.Process.Start(sInfo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void Debug(bool isDebugMode)
+        {
+            if (isDebugMode == false) return;
+
+            StringBuilder sbuilder = new StringBuilder();
+            sbuilder.AppendLine("params:");
+            sbuilder.AppendFormat("  title: {0}\n", App.title);
+            sbuilder.AppendFormat("  duration: {0}\n", App.duration);
+            sbuilder.AppendFormat("  isLoghtMode: {0}\n", App.isLightMode);
+            sbuilder.AppendFormat("  template: {0}\n", App.template);
+
+            sbuilder.AppendLine("\n\n=============");
+            sbuilder.AppendLine("other params:");
+            foreach (var param in App.other_params)
+            {
+                sbuilder.AppendFormat("  {0}: {1}\n", param.Key, param.Value);
+            }
+
+            MessageBox.Show(sbuilder.ToString());
         }
 
         /// <summary>
@@ -77,7 +127,13 @@ namespace WindowsNotify
 <html>
 <head>
 <style>
-  html{overflow:hidden;}
+  html{
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+
   body.dark {
     background-color:#1D2224;
     color: #CAD3DB;
