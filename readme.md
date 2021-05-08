@@ -4,6 +4,12 @@
 
 ### 依赖
 
+.net core 3.1 Runtime
+
+windows安装方法：
+
+<https://dotnet.microsoft.com/download/dotnet/3.1>
+
 ## 使用方法
 
 简单使用：
@@ -60,7 +66,7 @@ WindowsNotify会补全整个html并展示在弹窗中。
 
 ![1](./imgs/1.png)
 
-### 3. 使用带有超链接（<a>标签）的模板
+### 3. 使用带有超链接（< a >标签）的模板
 
 这里以模板名称为`my_template_with_url`为例，新建的html文件名称为`my_template_with_url.html`
 
