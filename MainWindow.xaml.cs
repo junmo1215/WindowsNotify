@@ -126,6 +126,7 @@ namespace WindowsNotify
             const string HTML_TEMPLATE = @"<!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 <style>
   html{
     overflow: hidden;
