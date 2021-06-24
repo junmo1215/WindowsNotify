@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsNotify"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="300" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="Manual">
+        Title="MainWindow" Height="300" Width="300" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="Manual" Topmost="True">
     <Window.Resources>
         <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
         <Style x:Key="MyButtonStyle" TargetType="Button">
